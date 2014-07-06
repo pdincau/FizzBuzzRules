@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.xpeppers.kata.rule.Rule;
-
 public class MultipleRuleTest {
 
 	@Test

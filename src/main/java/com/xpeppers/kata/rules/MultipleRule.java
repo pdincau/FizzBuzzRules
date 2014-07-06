@@ -1,6 +1,5 @@
 package com.xpeppers.kata.rules;
 
-import com.xpeppers.kata.rule.Rule;
 
 public class MultipleRule implements Rule {
 

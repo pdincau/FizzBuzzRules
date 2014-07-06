@@ -1,4 +1,4 @@
-package com.xpeppers.kata.rule;
+package com.xpeppers.kata.rules;
 
 public interface Rule {
 

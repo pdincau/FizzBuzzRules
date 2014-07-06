@@ -9,7 +9,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.xpeppers.kata.rule.Rule;
+import com.xpeppers.kata.rules.Rule;
 
 public class FizzBuzzTest {
 

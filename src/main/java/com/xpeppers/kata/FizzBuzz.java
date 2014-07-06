@@ -3,7 +3,7 @@ package com.xpeppers.kata;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xpeppers.kata.rule.Rule;
+import com.xpeppers.kata.rules.Rule;
 
 public class FizzBuzz {
 
