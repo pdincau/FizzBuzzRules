@@ -14,7 +14,7 @@ public class FizzBuzz {
 		for (Rule rule : rules) {
 			result += rule.run(number);	
 		}
-		if (result.equals("")) {
+		if ("".equals(result)) {
 			result = Integer.toString(number);
 		}
 		return result; 
