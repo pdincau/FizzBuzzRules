@@ -1,62 +1,53 @@
 package com.xpeppers.kata;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
+import java.util.Collection;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import com.xpeppers.kata.rules.Rule;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(Parameterized.class)
 public class FizzBuzzTest {
 
 	private FizzBuzz fizzBuzz;
-	@Mock private Rule rule;
+	private Rule rule;
+	
+	private final int inputNumber;
+	private final String outputString;
+	private String ruleResult;
 
-	@Before
-	public void setUp() {
-		fizzBuzz = new FizzBuzz();		
-		fizzBuzz.add(rule);
-	}
-
-
-	@Test
-	public void runsAddedRule() {
-		fizzBuzz.say(1);
-
-		verify(rule).run(1);
+	public FizzBuzzTest(int inputNumber, String outputString, String ruleResult) {
+		this.inputNumber = inputNumber;
+		this.outputString = outputString;
+		this.ruleResult = ruleResult;
+		this.rule = mock(Rule.class);
 	}
 	
+	@Parameters
+    public static Collection<Object[]> validActions() {
+        return asList(new Object[][] {
+                { 1, "1", "" },
+                { 3, "Fizz", "Fizz" },
+                { 5, "Buzz", "Buzz" },
+                { 15, "FizzBuzz", "FizzBuzz" },
+        });
+    }
+	
 	@Test
-	public void oneIsOne() {
-		when(rule.run(1)).thenReturn("");
+	public void transforms_input_number_according_to_rule() {
+		fizzBuzz = new FizzBuzz();		
+		fizzBuzz.add(rule);
 		
-		assertEquals("1", fizzBuzz.say(1));
-	}
-
-	@Test
-	public void multipleOfThreeIsFizz() {
-		when(rule.run(3)).thenReturn("Fizz");
-
-		assertEquals("Fizz", fizzBuzz.say(3));
-	}
-
-	@Test
-	public void multipleOfFiveIsBuzz() {
-		when(rule.run(5)).thenReturn("Buzz");
-
-		assertEquals("Buzz", fizzBuzz.say(5));
-	}
-
-	@Test
-	public void multipleOfThreeAndFiveIsFizzBuzz() {
-		when(rule.run(15)).thenReturn("FizzBuzz");
-
-		assertEquals("FizzBuzz", fizzBuzz.say(15));
+		when(rule.run(inputNumber)).thenReturn(ruleResult);
+		
+		assertEquals(outputString, fizzBuzz.say(inputNumber));
 	}
 }
