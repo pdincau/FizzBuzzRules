@@ -1,25 +1,26 @@
 package com.xpeppers.kata;
 
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
 import com.xpeppers.kata.rules.Rule;
 
+@RunWith(MockitoJUnitRunner.class)
 public class FizzBuzzTest {
 
 	private FizzBuzz fizzBuzz;
-	private Rule rule;
+	@Mock private Rule rule;
 
 	@Before
 	public void setUp() {
 		fizzBuzz = new FizzBuzz();		
-		rule = mock(Rule.class);
 	}
 
 
