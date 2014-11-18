@@ -21,13 +21,12 @@ public class FizzBuzzTest {
 	@Before
 	public void setUp() {
 		fizzBuzz = new FizzBuzz();		
+		fizzBuzz.add(rule);
 	}
 
 
 	@Test
 	public void runsAddedRule() {
-		fizzBuzz.add(rule);
-
 		fizzBuzz.say(1);
 
 		verify(rule).run(1);
@@ -35,12 +34,13 @@ public class FizzBuzzTest {
 	
 	@Test
 	public void oneIsOne() {
+		when(rule.run(1)).thenReturn("");
+		
 		assertEquals("1", fizzBuzz.say(1));
 	}
 
 	@Test
 	public void multipleOfThreeIsFizz() {
-		fizzBuzz.add(rule);
 		when(rule.run(3)).thenReturn("Fizz");
 
 		assertEquals("Fizz", fizzBuzz.say(3));
@@ -48,7 +48,6 @@ public class FizzBuzzTest {
 
 	@Test
 	public void multipleOfFiveIsBuzz() {
-		fizzBuzz.add(rule);
 		when(rule.run(5)).thenReturn("Buzz");
 
 		assertEquals("Buzz", fizzBuzz.say(5));
@@ -56,7 +55,6 @@ public class FizzBuzzTest {
 
 	@Test
 	public void multipleOfThreeAndFiveIsFizzBuzz() {
-		fizzBuzz.add(rule);
 		when(rule.run(15)).thenReturn("FizzBuzz");
 
 		assertEquals("FizzBuzz", fizzBuzz.say(15));
